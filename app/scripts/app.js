@@ -14,7 +14,11 @@
             .state('about', {
                 url: '/about',
                 templateUrl: 'templates/about.html'
-            });
+            })
+            .state('workSession', {
+                url: 'work_session',
+                templateUrl: 'templates/work_session.html'
+            })
     }
 
     angular
