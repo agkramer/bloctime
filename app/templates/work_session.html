@@ -1,1 +1,9 @@
 <h1>new work session</h1>
+
+<p>
+    {{ counter|timecode }}
+</p>
+
+<button ng-click="counter = counter - 1" ng-init="counter=1500">
+    Start Session
+</button>
