@@ -1,10 +1,12 @@
 (function() {
     function timer($interval) {
         return {
-
+            templateUrl: '/templates/directives/timer.html',
         };
 
-    };
+
+
+    }
 
     angular
         .module('blocTime')
