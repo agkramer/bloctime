@@ -6,9 +6,8 @@
         var LONG_BREAK_TIME = 4
         var SHORT_BREAK_TIME = 2;
 
-        var WORK_SESSIONS_COMPLETED = 0;
-
         var runTimer;
+        var workSessionsCompleted = 0;
 
         this.currentTime = WORK_TIME; // initialize currentTime with WORK_TIME
         this.timerButtonName = 'Start';
@@ -64,10 +63,10 @@
             $ctrl.timerButtonName = 'Start';
 
             if ($ctrl.onBreak == false) {
-                WORK_SESSIONS_COMPLETED += 1;
+                workSessionsCompleted += 1;
             }
 
-            console.log("WORK_SESSIONS_COMPLETED = " + WORK_SESSIONS_COMPLETED);
+            console.log("workSessionsCompleted = " + workSessionsCompleted);
             $ctrl.onBreak = !$ctrl.onBreak;
             getCurrentTime();
         };
@@ -77,7 +76,7 @@
         * @desc gets BREAK_TIME or WORK_TIME
         */
         getCurrentTime = function() {
-            if ($ctrl.onBreak && WORK_SESSIONS_COMPLETED % 4 == 0) {
+            if ($ctrl.onBreak && workSessionsCompleted % 4 == 0) {
                 $ctrl.currentTime = LONG_BREAK_TIME;
             } else if ($ctrl.onBreak) {
                 $ctrl.currentTime = SHORT_BREAK_TIME;
