@@ -2,10 +2,8 @@
     function WorkSessionCtrl($interval) {
 
         // CONSTANTS
-        var WORK_TIME = 5
-        var BREAK_TIME = 2
-
-        // var SESSION_TIME = 5
+        var WORK_TIME = 5;
+        var BREAK_TIME = 2;
 
         var runTimer;
 
@@ -14,7 +12,7 @@
         this.onBreak = false;
 
 
-        var $ctrl = this  // allows inner function to gain access to 'this'
+        var $ctrl = this;  // allows inner function to gain access to 'this'
 
         /*
         * @function startResetTimer
@@ -34,21 +32,24 @@
         * @desc starts timer, resets when timer hits 0
         */
         startTimer = function() {
-            $ctrl.timerButtonName = 'Reset'
+            $ctrl.timerButtonName = 'Reset';
+            runTimer = $interval(countDown, 1000);
+        };
 
-            runTimer = $interval(function() {
-                console.log('$interval function time:  ' + $ctrl.currentTime);
-                if ($ctrl.currentTime > 0 ) {
-                    console.log('$ctrl.currentTime > 0');
-                    $ctrl.currentTime -= 1;
-                }
-                else {
-                    resetTimer(runTimer);
-                    $ctrl.onBreak = !$ctrl.onBreak;
-
-                    getCurrentTime();
-                }
-            }, 1000);
+        /*
+        * @function countDown
+        * @desc counts timer down, resets timer when timer hits 0
+        */
+        countDown = function() {
+            console.log('$interval function time: ' + $ctrl.currentTime);
+            if ($ctrl.currentTime > 0) {
+                console.log('$ctrl.currentTime > 0');
+                $ctrl.currentTime -= 1;
+            } else {
+                resetTimer(runTimer);
+                $ctrl.onBreak = !$ctrl.onBreak;
+                getCurrentTime();
+            }
         };
 
         /*
@@ -63,6 +64,10 @@
             getCurrentTime();
         };
 
+        /*
+        * @function getCurrentTime
+        * @desc gets BREAK_TIME or WORK_TIME
+        */
         getCurrentTime = function() {
             if ($ctrl.onBreak) {
                 $ctrl.currentTime = BREAK_TIME;
@@ -70,7 +75,8 @@
                 $ctrl.currentTime = WORK_TIME;
             }
         };
-    }
+    } // end of WorkSessionCtrl
+
 
     angular
         .module('blocTime')
