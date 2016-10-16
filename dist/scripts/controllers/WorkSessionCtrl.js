@@ -1,5 +1,5 @@
 (function() {
-    function WorkSessionCtrl($interval) {
+    function WorkSessionCtrl($scope, $interval) {
 
         // CONSTANTS
         var WORK_TIME = 5;
@@ -13,6 +13,9 @@
         this.timerButtonName = 'Start';
         this.onBreak = false;
 
+        var gongSound = new buzz.sound( "assets/sounds/gong.mp3", {
+            preload: true
+        });
 
         var $ctrl = this;  // allows inner function to gain access to 'this'
 
@@ -59,6 +62,7 @@
                 console.log("workSessionsCompleted = " + workSessionsCompleted);
                 $ctrl.onBreak = !$ctrl.onBreak;
 
+                gongSound.play();
                 getCurrentTime();
             }
         };
@@ -91,5 +95,5 @@
 
     angular
         .module('blocTime')
-        .controller('WorkSessionCtrl', ['$interval', WorkSessionCtrl]);
+        .controller('WorkSessionCtrl', ['$scope', '$interval', WorkSessionCtrl]);
 })();
