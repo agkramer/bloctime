@@ -1,6 +1,7 @@
 <div class="container">
-    <h3 ng-show="!workSession.onBreak">Work Session</h3>
-    <h3 ng-show="workSession.onBreak">Take a break!</h3>
+    <h3 ng-show="!workSession.onBreak">You gotta put in work, work, work, work, work, work, work</h3>
+    <h3 ng-show="workSession.onBreak">Take a break, you earned it!</h3>
+
     <h3>{{ workSession.currentTime }}</h3>
 
     <button class="btn btn-primary" ng-show="!workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Work Session" }}</button>
