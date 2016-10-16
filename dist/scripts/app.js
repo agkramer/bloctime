@@ -17,6 +17,7 @@
             })
             .state('workSession', {
                 url: 'work_session',
+                controller: 'WorkSessionCtrl as workSession',
                 templateUrl: 'templates/work_session.html'
             })
     }
