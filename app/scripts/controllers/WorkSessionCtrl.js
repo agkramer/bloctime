@@ -77,7 +77,9 @@
         * @desc gets BREAK_TIME or WORK_TIME
         */
         getCurrentTime = function() {
-            if ($ctrl.onBreak) {
+            if ($ctrl.onBreak && WORK_SESSIONS_COMPLETED % 4 == 0) {
+                $ctrl.currentTime = LONG_BREAK_TIME;
+            } else if ($ctrl.onBreak) {
                 $ctrl.currentTime = SHORT_BREAK_TIME;
             } else {
                 $ctrl.currentTime = WORK_TIME;
