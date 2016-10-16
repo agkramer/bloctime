@@ -3,7 +3,10 @@
 
         // CONSTANTS
         var WORK_TIME = 5;
-        var BREAK_TIME = 2;
+        var LONG_BREAK_TIME = 4
+        var SHORT_BREAK_TIME = 2;
+
+        var WORK_SESSIONS_COMPLETED = 0;
 
         var runTimer;
 
@@ -47,7 +50,6 @@
                 $ctrl.currentTime -= 1;
             } else {
                 resetTimer(runTimer);
-                $ctrl.onBreak = !$ctrl.onBreak;
                 getCurrentTime();
             }
         };
@@ -61,6 +63,12 @@
             $interval.cancel(foo);
             $ctrl.timerButtonName = 'Start';
 
+            if ($ctrl.onBreak == false) {
+                WORK_SESSIONS_COMPLETED += 1;
+            }
+
+            console.log("WORK_SESSIONS_COMPLETED = " + WORK_SESSIONS_COMPLETED);
+            $ctrl.onBreak = !$ctrl.onBreak;
             getCurrentTime();
         };
 
@@ -70,7 +78,7 @@
         */
         getCurrentTime = function() {
             if ($ctrl.onBreak) {
-                $ctrl.currentTime = BREAK_TIME;
+                $ctrl.currentTime = SHORT_BREAK_TIME;
             } else {
                 $ctrl.currentTime = WORK_TIME;
             }
