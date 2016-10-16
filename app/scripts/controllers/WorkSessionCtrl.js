@@ -2,12 +2,17 @@
     function WorkSessionCtrl($interval) {
 
         // CONSTANTS
-        var SESSION_TIME = 5
+        var WORK_TIME = 5
         var BREAK_TIME = 2
 
-        var runTimer = undefined;
-        this.currentTime = SESSION_TIME
-        this.timerButtonName = 'Start Session'
+        // var SESSION_TIME = 5
+
+        var runTimer;
+
+        this.currentTime = WORK_TIME; // initialize currentTime with WORK_TIME
+        this.timerButtonName = 'Start';
+        this.onBreak = false;
+
 
         var $ctrl = this  // allows inner function to gain access to 'this'
 
@@ -16,7 +21,7 @@
         * @desc if timer is set - starts timer, if not - resets timer
         */
         this.startResetTimer = function () {
-            if ($ctrl.timerButtonName == 'Start Session') {
+            if ($ctrl.timerButtonName == 'Start') {
                 console.log('starting timer');
                 startTimer();
             } else {
@@ -39,6 +44,14 @@
                 }
                 else {
                     resetTimer(runTimer);
+                    $ctrl.onBreak = !$ctrl.onBreak;
+
+                    if ($ctrl.onBreak) {
+                        $ctrl.currentTime = BREAK_TIME;
+                    } else {
+                        $ctrl.currentTime = WORK_TIME;
+                    }
+
                 }
             }, 1000);
         };
@@ -47,11 +60,18 @@
         * @function resetTimer
         * @desc resets timer if not finished
         */
-        resetTimer = function(timer) {
+        resetTimer = function(foo) {
             console.log('timer reset');
-            $interval.cancel(timer);
-            $ctrl.timerButtonName = 'Start Session';
-            $ctrl.currentTime = SESSION_TIME;
+            $interval.cancel(foo);
+            $ctrl.timerButtonName = 'Start';
+            
+            if ($ctrl.onBreak) {
+                $ctrl.currentTime = BREAK_TIME;
+            } else {
+                $ctrl.currentTime = WORK_TIME;
+            }
+
+            // $ctrl.currentTime = SESSION_TIME;
         };
     }
 
