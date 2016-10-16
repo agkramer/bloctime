@@ -26,6 +26,7 @@
                 startTimer();
             } else {
                 resetTimer(runTimer);
+                getCurrentTime();
             }
         };
 
@@ -35,20 +36,29 @@
         */
         startTimer = function() {
             $ctrl.timerButtonName = 'Reset';
-            runTimer = $interval(countDown, 1000);
+            runTimer = $interval(countDownTimer, 1000);
         };
 
         /*
         * @function countDown
         * @desc counts timer down, resets timer when timer hits 0
         */
-        countDown = function() {
+        countDownTimer = function() {
             console.log('$interval function time: ' + $ctrl.currentTime);
             if ($ctrl.currentTime > 0) {
                 console.log('$ctrl.currentTime > 0');
                 $ctrl.currentTime -= 1;
             } else {
                 resetTimer(runTimer);
+
+                if ($ctrl.onBreak == false) {
+                    workSessionsCompleted += 1;
+                }
+
+                console.log("Work Session Complete!");
+                console.log("workSessionsCompleted = " + workSessionsCompleted);
+                $ctrl.onBreak = !$ctrl.onBreak;
+
                 getCurrentTime();
             }
         };
@@ -61,22 +71,14 @@
             console.log('timer reset');
             $interval.cancel(foo);
             $ctrl.timerButtonName = 'Start';
-
-            if ($ctrl.onBreak == false) {
-                workSessionsCompleted += 1;
-            }
-
-            console.log("workSessionsCompleted = " + workSessionsCompleted);
-            $ctrl.onBreak = !$ctrl.onBreak;
-            getCurrentTime();
-        };
+            };
 
         /*
         * @function getCurrentTime
         * @desc gets BREAK_TIME or WORK_TIME
         */
         getCurrentTime = function() {
-            if ($ctrl.onBreak && workSessionsCompleted % 4 == 0) {
+            if ($ctrl.onBreak && workSessionsCompleted % 4 === 0) {
                 $ctrl.currentTime = LONG_BREAK_TIME;
             } else if ($ctrl.onBreak) {
                 $ctrl.currentTime = SHORT_BREAK_TIME;
