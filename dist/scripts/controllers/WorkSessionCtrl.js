@@ -46,12 +46,7 @@
                     resetTimer(runTimer);
                     $ctrl.onBreak = !$ctrl.onBreak;
 
-                    if ($ctrl.onBreak) {
-                        $ctrl.currentTime = BREAK_TIME;
-                    } else {
-                        $ctrl.currentTime = WORK_TIME;
-                    }
-
+                    getCurrentTime();
                 }
             }, 1000);
         };
@@ -64,14 +59,16 @@
             console.log('timer reset');
             $interval.cancel(foo);
             $ctrl.timerButtonName = 'Start';
-            
+
+            getCurrentTime();
+        };
+
+        getCurrentTime = function() {
             if ($ctrl.onBreak) {
                 $ctrl.currentTime = BREAK_TIME;
             } else {
                 $ctrl.currentTime = WORK_TIME;
             }
-
-            // $ctrl.currentTime = SESSION_TIME;
         };
     }
 
