@@ -1,9 +1,51 @@
-<div class="container">
-    <h3 ng-show="!workSession.onBreak">You gotta put in work, work, work, work, work, work, work</h3>
-    <h3 ng-show="workSession.onBreak">Take a break, you earned it!</h3>
+<div class="container-fluid">
+    <div class="row">
 
-    <h3>{{ workSession.currentTime }}</h3>
+        <!-- TASKS CONTAINER  -->
+        <div class="col-md-4">
+            <h3>Task history</h3>
 
-    <button class="btn btn-primary" ng-show="!workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Work Session" }}</button>
-    <button class="btn btn-primary" ng-show="workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Break" }}</button>
+            <form>
+                <div class="form-group">
+                  <input class="form-control" type="text" placeholder="Enter task"></input>
+                </div>
+
+                <button class="btn btn-success">Add task</button>
+            </form>
+
+            <table class="table">
+                <tr>
+                  <td>Task 1</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- TIMER CONTAINER -->
+        <div class="col-md-8">
+            <div class="container-fluid text-center">
+                <h3 ng-show="!workSession.onBreak">You gotta put in work, work, work...</h3>
+                <h3 ng-show="workSession.onBreak">Take a break, you earned it!</h3>
+
+                <h3>{{ workSession.currentTime }}</h3>
+
+                <button class="btn btn-primary" ng-show="!workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Work Session" }}</button>
+                <button class="btn btn-primary" ng-show="workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Break" }}</button>
+            </div>
+        </div>
+
+    </div>
 </div>
+
+
+
+<!-- <div class="col-md-9">
+    <div class="container-fluid text-center">
+        <h3 ng-show="!workSession.onBreak">You gotta put in work, work, work...</h3>
+        <h3 ng-show="workSession.onBreak">Take a break, you earned it!</h3>
+
+        <h3>{{ workSession.currentTime }}</h3>
+
+        <button class="btn btn-primary" ng-show="!workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Work Session" }}</button>
+        <button class="btn btn-primary" ng-show="workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Break" }}</button>
+    </div>
+</div> -->
