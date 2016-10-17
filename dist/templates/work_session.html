@@ -6,16 +6,23 @@
 
         <form>
             <div class="form-group">
-              <input class="form-control" type="text" placeholder="Enter task"></input>
+              <input class="form-control" ng-model="workSession.newTask.description" type="text" placeholder="Enter task"></input>
             </div>
 
-            <button class="btn btn-success">Add task</button>
+            <button class="btn btn-success" ng-click="workSession.createNewTask()">Add task</button>
         </form>
         <br>
         <table class="table">
-            <th>To Do:</th>
-            <tr>
-              <td>Task 1</td>
+            <th>Completed:</th>
+            <th></th>
+            <tr ng-repeat="task in workSession.tasks | orderBy:'createdAt' ">
+              <!-- <td ng-repeat="task in workSession.tasks | orderBy()"> -->
+              <td>
+                  {{task.description}}
+              </td>
+              <td>
+                  <button class="btn btn-danger btn-sm pull-right" ng-click="workSession.tasks.$remove(task)">DELETE</button>
+              </td>
             </tr>
         </table>
     </div>

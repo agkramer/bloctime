@@ -7,6 +7,9 @@
     background-color: #f5f5f5;
 }
 
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
 
 
 @media (max-width: 768px) {

@@ -1,5 +1,22 @@
 (function() {
-    function WorkSessionCtrl($scope, $interval) {
+    function WorkSessionCtrl($scope, $interval, $firebaseArray) {
+        var ref =  firebase.database().ref();
+
+
+
+
+        window.foo = $firebaseArray(ref)
+
+
+
+        this.createNewTask = () => {
+            this.newTask.createdAt = Date.now()
+            this.tasks.$add(this.newTask)
+            this.newTask = {}
+        }
+
+
+
 
         // CONSTANTS
         var WORK_TIME = 5;
@@ -12,6 +29,7 @@
         this.currentTime = WORK_TIME; // initialize currentTime with WORK_TIME
         this.timerButtonName = 'Start';
         this.onBreak = false;
+        this.tasks = $firebaseArray(ref);
 
         var gongSound = new buzz.sound( "assets/sounds/gong.mp3", {
             preload: true
@@ -95,5 +113,5 @@
 
     angular
         .module('blocTime')
-        .controller('WorkSessionCtrl', ['$scope', '$interval', WorkSessionCtrl]);
+        .controller('WorkSessionCtrl', ['$scope', '$interval','$firebaseArray', WorkSessionCtrl]);
 })();
