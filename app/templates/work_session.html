@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <!-- TASKS CONTAINER  -->
-    <div class="col-md-4" style="background-color: lightgrey">
+    <div class="col-sm-4" style="background-color: lightgrey">
         <h3>Task history</h3>
 
         <form>
@@ -27,9 +27,9 @@
     </div>
 
     <!-- TIMER CONTAINER -->
-    <div class="col-md-8">
+    <div class="col-sm-8">
         <div class="container-fluid text-center">
-            <h3 ng-show="!workSession.onBreak">You gotta put in work, work, work...</h3>
+            <h3 ng-show="!workSession.onBreak">You gotta put in work, work, work, work, work...</h3>
             <h3 ng-show="workSession.onBreak">Take a break, you earned it!</h3>
 
             <h3>{{ workSession.currentTime | timecode }}</h3>
