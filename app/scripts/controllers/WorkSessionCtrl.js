@@ -2,12 +2,7 @@
     function WorkSessionCtrl($scope, $interval, $firebaseArray) {
         var ref =  firebase.database().ref();
 
-
-
-
         window.foo = $firebaseArray(ref)
-
-
 
         this.createNewTask = () => {
             this.newTask.createdAt = Date.now()
@@ -15,13 +10,10 @@
             this.newTask = {}
         }
 
-
-
-
         // CONSTANTS
-        var WORK_TIME = 5;
-        var LONG_BREAK_TIME = 4
-        var SHORT_BREAK_TIME = 2;
+        var WORK_TIME = 1500;
+        var LONG_BREAK_TIME = 1500
+        var SHORT_BREAK_TIME = 300;
 
         var runTimer;
         var workSessionsCompleted = 0;

@@ -16,9 +16,8 @@
             <th>Completed:</th>
             <th></th>
             <tr ng-repeat="task in workSession.tasks | orderBy:'createdAt' ">
-              <!-- <td ng-repeat="task in workSession.tasks | orderBy()"> -->
               <td>
-                  {{task.description}}
+                  {{ task.description }}
               </td>
               <td>
                   <button class="btn btn-danger btn-sm pull-right" ng-click="workSession.tasks.$remove(task)">DELETE</button>
@@ -33,7 +32,7 @@
             <h3 ng-show="!workSession.onBreak">You gotta put in work, work, work...</h3>
             <h3 ng-show="workSession.onBreak">Take a break, you earned it!</h3>
 
-            <h3>{{ workSession.currentTime }}</h3>
+            <h3>{{ workSession.currentTime | timecode }}</h3>
 
             <button class="btn btn-primary" ng-show="!workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Work Session" }}</button>
             <button class="btn btn-primary" ng-show="workSession.onBreak" ng-click="workSession.startResetTimer()">{{ workSession.timerButtonName + " Break" }}</button>
