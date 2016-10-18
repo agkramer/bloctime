@@ -15,7 +15,7 @@
         <table class="table">
             <th>Completed:</th>
             <th></th>
-            <tr ng-repeat="task in workSession.tasks | orderBy:'createdAt' ">
+            <tr ng-repeat="task in workSession.tasks | limitTo:-5 | orderBy:reverse:'createdAt' ">
               <td>
                   {{ task.description }}
               </td>
